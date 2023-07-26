@@ -64,28 +64,32 @@
       <div class="card mt-2 border-0">
         <div class="card-body">
           <p class="label my-2 mt-0 py-0" style="margin-left: 5px">Synonyms</p>
-          <div
-            class="d-flex align-items-center"
-            *ngFor="let synonym of synonyms"
-          >
-            <span
-              class="badge text-bg-warning rounded-pill py-2 fs-6 text-dark fw-medium"
-              >{{ synonym }}</span
+          <div class="d-flex flex-wrap align-items-center">
+            <div
+              class="d-flex align-items-center my-2"
+              *ngFor="let synonym of synonyms"
             >
+              <span
+                class="badge text-bg-warning rounded-pill py-2 mx-2 fs-6 text-dark fw-medium"
+                >{{ synonym }}</span
+              >
+            </div>
           </div>
         </div>
       </div>
       <div class="card mt-2 border-0">
         <div class="card-body w-100">
           <p class="label my-2 mt-0 py-0" style="margin-left: 5px">Antonyms</p>
-          <div
-            class="d-flex align-items-center"
+          <div class="d-flex flex-wrap align-items-center">
+            <div
+            class="d-flex flex-row align-items-center my-2"
             *ngFor="let antonym of antonyms"
           >
             <span
-              class="badge text-bg-warning rounded-pill py-2 fs-6 text-dark fw-medium"
+              class="badge text-bg-warning rounded-pill py-2 mx-2 fs-6 text-dark fw-medium"
               >{{ antonym }}</span
             >
+          </div>
           </div>
         </div>
       </div>
