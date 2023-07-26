@@ -15,12 +15,12 @@ export class WordComponent {
   definitions: Definitions[];
   synonyms: string[];
   antonyms: string[];
-  inputWord: string;
+  inputWord: string = "basic";
   responseStatus: number;
   constructor(private wordService: WordService){}
 
   ngOnInit(){
-    this.wordService.getWord("basic").subscribe((data) => {
+    this.wordService.getWord(this.inputWord).subscribe((data) => {
       this.word = data;
       this.meanings = this.word.meanings;
       this.definitions = this.meanings[0].definitions;
@@ -46,5 +46,10 @@ export class WordComponent {
       this.responseStatus = error.status;
     }
     )
+  }
+
+  handleLabelClick(synonym:string){
+    this.inputWord = synonym;
+    this.handleSearch();
   }
 }

@@ -1,16 +1,17 @@
 <div class="container-fluid">
-  <div class="container pt-5">
+  <div class="app-container pt-5">
     <form (submit)="handleSearch()" class="d-flex align-items-center mb-2">
       <input
         type="search"
         class="form-control"
         placeholder="Search a word"
+        [value]="inputWord"
         (input)="handleSearchInput($event)"
         style="margin-right: 5px"
       />
       <button class="btn btn-warning" type="submit">Search</button>
     </form>
-    <div *ngIf="!(responseStatus === 404)">
+    <div *ngIf="(responseStatus !== 404)">
       <div class="card text-white p-2">
         <div class="card-header">
           <p class="card-text label my-0">Word</p>
@@ -20,7 +21,7 @@
           <audio src="{{ word.audio }}" controls class="mb-2"></audio>
           <div class="d-flex align-items-center">
             <div class="word-type">
-              <p class="label mr-5 mb-1" style="margin-right: 12rem">Class</p>
+              <p class="label mr-5 mb-1" style="margin-right: 11rem">Class</p>
               <div
                 class="pb-1 text-bg-secondary mb-0 rounded"
                 *ngFor="let meaning of meanings"
@@ -68,9 +69,11 @@
             <div
               class="d-flex align-items-center my-2"
               *ngFor="let synonym of synonyms"
+              (click)="handleLabelClick(synonym)"
+              style="cursor:pointer"
             >
               <span
-                class="badge text-bg-warning rounded-pill py-2 mx-2 fs-6 text-dark fw-medium"
+                class="badge text-bg-warning rounded-pill py-2 mx-2 fs-6 text-dark fw-medium" 
                 >{{ synonym }}</span
               >
             </div>
@@ -84,6 +87,8 @@
             <div
             class="d-flex flex-row align-items-center my-2"
             *ngFor="let antonym of antonyms"
+            (click)="handleLabelClick(antonym)"
+            style="cursor:pointer"
           >
             <span
               class="badge text-bg-warning rounded-pill py-2 mx-2 fs-6 text-dark fw-medium"
