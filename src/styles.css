@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root{
+    --bg-primary: #2F3640;
+    --bg-secondary: #3D4654;
+    --text-primary: #fff;
+    --text-secondary: #23C7A2;
+    --label-bg-color: #D0C317;
+}
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}

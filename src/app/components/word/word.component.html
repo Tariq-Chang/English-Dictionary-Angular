@@ -1,0 +1,104 @@
+<div class="container-fluid">
+  <div class="container pt-5">
+    <form (submit)="handleSearch()" class="d-flex align-items-center mb-2">
+      <input
+        type="search"
+        class="form-control"
+        placeholder="Search a word"
+        (input)="handleSearchInput($event)"
+        style="margin-right: 5px"
+      />
+      <button class="btn btn-warning" type="submit">Search</button>
+    </form>
+    <div *ngIf="!(responseStatus === 404)">
+      <div class="card text-white p-2">
+        <div class="card-header">
+          <p class="card-text label my-0">Word</p>
+          <h2 class="card-text">{{ word.name }}</h2>
+        </div>
+        <div class="card-body">
+          <audio src="{{ word.audio }}" controls class="mb-2"></audio>
+          <div class="d-flex align-items-center">
+            <div class="word-type">
+              <p class="label mr-5 mb-1" style="margin-right: 12rem">Class</p>
+              <div
+                class="pb-1 text-bg-secondary mb-0 rounded"
+                *ngFor="let meaning of meanings"
+              >
+                <span>{{ meaning.partOfSpeech }}</span>
+              </div>
+            </div>
+            <div class="phonetic">
+              <p class="label mb-1">Phonetic</p>
+              <p class="mb-1">{{ word.phonetic }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <p class="label">Definitions</p>
+          <div
+            class="definitions"
+            *ngFor="let definition of definitions; let i = index"
+          >
+            <ol style="list-style-type: none; margin: 5px 0">
+              <li class="my-0">
+                <span class="list-numbers">{{ i + 1 }}.</span>
+                {{ definition.definition }}
+              </li>
+            </ol>
+          </div>
+          <p class="label">Examples</p>
+          <div
+            class="examples"
+            *ngFor="let definition of definitions; let i = index"
+          >
+            <ol style="list-style-type: none; margin: 5px 0">
+              <li class="my-0">
+                <span class="list-numbers">{{ i + 1 }}.</span>
+                {{ definition.definition }}
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-2 border-0">
+        <div class="card-body">
+          <p class="label my-2 mt-0 py-0" style="margin-left: 5px">Synonyms</p>
+          <div
+            class="d-flex align-items-center"
+            *ngFor="let synonym of synonyms"
+          >
+            <span
+              class="badge text-bg-warning rounded-pill py-2 fs-6 text-dark fw-medium"
+              >{{ synonym }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="card mt-2 border-0">
+        <div class="card-body w-100">
+          <p class="label my-2 mt-0 py-0" style="margin-left: 5px">Antonyms</p>
+          <div
+            class="d-flex align-items-center"
+            *ngFor="let antonym of antonyms"
+          >
+            <span
+              class="badge text-bg-warning rounded-pill py-2 fs-6 text-dark fw-medium"
+              >{{ antonym }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <a
+        [href]="word.sourceUrl"
+        target="_blank"
+        class="text-secondary"
+        style="padding: 5px"
+        >See more on wikipedia</a
+      >
+    </div>
+    <div *ngIf="responseStatus === 404">
+      <h2 class="text-white">Word not found!</h2>
+    </div>
+  </div>
+</div>
